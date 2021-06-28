@@ -180,17 +180,27 @@ print(
     "—————————————————————————————————————————————————————————————————————————————————————————"
 )
 
-print("Note: If you don't get the data of all the elements on the webpage :\n\n 1. Fix your Internet Connection\n 2. Increase the scroll_pause_time in this code")
+print("Note: If you don't get the data of all the elements on the webpage :\n\n 1. Fix your Internet Connection\n 2. Increase the scroll_pause_time in this code\n 3. (Not gettting Data in your browser Order?) Clear your browser cookies")
 
 print("—————————————————————————————————————————————————————————————————————————————————————————")
 
 inputkey = input(
-    "\n—> Enter '1' to apply 3BHK and 4BHK filter and get the data in New File (named 'Filtered_Output_Web_Scrap.xlsx') or\n\t '2' to exit the program\n\t\t:" 
+    "\n—> Enter '1' to apply 3BHK and 4BHK filter and get the data in New File (named 'Filtered_Output_Web_Scrap.xlsx') or\n\t '2' or any other key to exit the program\n\t\t:" 
 )
 
 if inputkey == '1':
+    driver.quit()
+    
+    
+    driver = webdriver.Chrome()
+    
+    driver.set_window_position(0,0)
     #increasing window size because site is not mobile friendly (small screen) and elements aren't getting located by xpath
     driver.set_window_size(1440, 1020)
+    
+    driver.get("https://www.propertiesguru.com/residential-search/2bhk-residential_apartment_flat-for-sale-in-new_delhi")
+
+    
     
     
     print(
@@ -198,22 +208,22 @@ if inputkey == '1':
     
     # driver.get("https://www.propertiesguru.com/residential-search/2bhk-residential_apartment_flat-for-sale-in-new_delhi")
     
-    driver.refresh()
+    # # driver.refresh()
+    # time.sleep(5)
     
-    time.sleep(10) #to load the webpage
     
-    element = driver.find_element_by_xpath('//*[@id="properties"]/div/div[1]/h1')
-    driver.execute_script("return arguments[0].scrollIntoView(true);", element)
+    # element = driver.find_element_by_xpath('//*[@id="properties"]/div/div[1]/h1')
+    # driver.execute_script("return arguments[0].scrollIntoView(true);", element)
     
-    time.sleep(3)
+    time.sleep(10)
     filterapply = driver.find_element_by_class_name('bedroomdropdown').click()
 
-    #applying 3 bhk and 4 bhk Filter
-    
 
+    #applying 3 bhk and 4 bhk Filter
     bhk_3 = driver.find_element_by_xpath('//*[@id="navbarNavDropdown"]/ul[1]/li[3]/ul/li/div/ul/li[3]/label/span').click()
     bhk_4 = driver.find_element_by_xpath('//*[@id="navbarNavDropdown"]/ul[1]/li[3]/ul/li/div/ul/li[4]/label/span').click()
-
+    
+    time.sleep(5)
     #calling function to scroll to load full content
     scrolltobottom()
     time.sleep(5)
@@ -253,7 +263,7 @@ if inputkey == '1':
                 sheet_name='Properties Guru Filtered Search - 2 by Pranjal')
     print("\n Your Excel file is Saved !!")
     print("—————————————————————————————————————————————————————————————————————————————————————————")
-    print("Note: If you don't get the data of all the elements on the webpage :\n\n 1. Fix your Internet Connection\n 2. Increase the scroll_pause_time in this code")
+    print("Note: If you don't get the data of all the elements on the webpage :\n\n 1. Fix your Internet Connection\n 2. Increase the scroll_pause_time in this code\n 3. (Not gettting Data in your browser Order?) Clear your browser cookies")
     
     
 
